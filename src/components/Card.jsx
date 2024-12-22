@@ -1,106 +1,116 @@
 import { useState } from "react";
-    const messages = [
-  "😎 Learn HTML",
-  "🐳 Learn CSS",
-  "💪 JavaScript",
-  "🤑 Learn React",
-];
 
-const cardStyle={
-    display:"flex",
-    gap:"2rem",
-    flexDirection:"column",
-    backgroundColor :"#eeeee4",
-    padding:"2rem",
-    // height:"fit-content",
-    border:"1px solid black",
-    width:"400px",
-    // height:"300px",
-    borderRadius:"10px",
-
-
-    
+const cardStyle = {
+    backgroundColor: "#f1f3f5",
+    padding: "1rem",
+    height: "fit-content",
+    borderRadius: "1rem",
+    border: "2px solid grey",
+    width: "20rem",
 };
 
-const active  = {
-    backgroundColor:"#ae3ec9",
-    color :"white"
-}
+const numsContainer = {
+    display: "flex",
+    gap: "1rem",
+    width: "100%",
+    justifyContent: "space-between",
+    marginBottom: "2rem",
+};
 
-const numStyle ={
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
-    height:"3rem",
-    width:"3rem",
-    borderRadius:"100%",
-    
-    // padding:"0.5rem"
-    
-}
-const cardContainer ={
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"space-between",
-    gap:"1rem"
-}
-const messegeStyle ={
-    textAlign:"center",
-    fontSize:"1rem"
-}
+const active = {
+    backgroundColor: "#ae3ec9",
+    color: "#fff",
+};
 
-const btnStyle ={
-backgroundColor:"#ae3ec9",
-padding:"0.5rem",
-borderRadius:"5px",
-border:"none",
-fontSize:"1rem",
-} 
-const btnContainer ={
-display:"flex",
-justifyContent:"space-between",
-}
+const numStyle = {
+    height: "2rem",
+    width: "2rem",
+    borderRadius: "100%",
 
+    backgroundColor: "#fff",
+    color: "black",
+    fontWeight: "bold",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+};
 
-function Card(){
-    const [step,setStep] =useState(1);
+const messageStyle = {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: "2rem",
+};
 
-    function previusStep(){
-        if(step===1) return;
-            setStep (step-1);
-        
-    
+const buttonContainer = {
+    display: "flex",
+    justifyContent: "space-between",
+};
+
+const btnStyle = {
+    padding: "0.5rem 1rem",
+    border: "none",
+    backgroundColor: "#ae3ec9",
+    borderRadius: "1rem",
+    color: "#fff",
+    cursor: "pointer",
+};
+
+const messages = [
+    "😎 Learn HTML",
+    "🐳 Learn CSS",
+    "💪 JavaScript",
+    "🤑 Learn React",
+];
+
+// 1. Initial Render : step = 1
+// 2. setStep(2) : Re-Render Conponet --> step = 2
+// 3. setStep(3) : Re-Render Conponet --> step = 3
+// 4. setStep(4) : Re-Render Conponet --> step = 4
+
+function Card() {
+    const [step, setStep] = useState(1);
+
+    function minusStep() {
+        if (step === 1) return;
+        setStep(step - 1);
+        // Immediately updated state can'not be accessed
+        // We can access it after re-render
     }
-    function nextStep(){
-        if(step===messages.length)return;
-            setStep (step+1);
-        
+
+    function plusStep() {
+        if (step === messages.length) return;
+        setStep(step + 1);
     }
+
     return (
         <div style={cardStyle}>
-            <ul style={cardContainer}>
-                <div style={ step>=1 ? {...numStyle, ...active} :numStyle}>
-             <span>1</span>
-             </div>
-             <div style={ step>=2 ? {...numStyle, ...active} :numStyle}>
-              <span>2</span>
-              </div>
-              <div style={ step>=3 ? {...numStyle, ...active} :numStyle}>
-              <span>3 </span>
-              </div>
-              <div style={ step>=4 ? {...numStyle, ...active} :numStyle}>
-                <span>4</span>
+            <ul style={numsContainer}>
+                <div style={step >= 1 ? { ...numStyle, ...active } : numStyle}>
+                    <span>1</span>
+                </div>
+                <div style={step >= 2 ? { ...numStyle, ...active } : numStyle}>
+                    <span>2</span>
+                </div>
+                <div style={step >= 3 ? { ...numStyle, ...active } : numStyle}>
+                    <span>3</span>
+                </div>
+                <div style={step >= 4 ? { ...numStyle, ...active } : numStyle}>
+                    <span>4</span>
                 </div>
             </ul>
-            <p style={messegeStyle}>{messages[step-1] }</p>
-      
-        <div>
-            <div style={btnContainer}>
-<button onClick={previusStep} style={btnStyle}>Previous</button>
-<button onClick={nextStep} style={btnStyle}>Next</button>
-</div>
+
+            <p style={messageStyle}>{messages[step - 1]}</p>
+
+            <div style={buttonContainer}>
+                <button onClick={minusStep} style={btnStyle}>
+                    Prev
+                </button>
+                <button onClick={plusStep} style={btnStyle}>
+                    Next
+                </button>
+            </div>
         </div>
-        </div>
-    )
+    );
 }
-export default Card
+
+export default Card;
