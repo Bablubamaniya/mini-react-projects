@@ -4,6 +4,13 @@ import { useState } from "react";
 const textStyle = {
   maxWidth: "40rem",
 };
+const btnstyle={
+  border:"none",
+  backgroundColor:"transparent",
+  marginLeft:"o.5rem",
+  color:"blue",
+  cursor:"pointer",
+}
 const rawText = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odio
 autem sapiente cumque iure a error fugiat molestias maiores impedit.
 Accusamus ad consectetur voluptatum commodi debitis ea, aut doloribus
@@ -59,11 +66,11 @@ function TextExpander() {
   }
   return (
     <div style={textStyle}>
-      <p>
-        {text}
-      </p>
-      <button onClick={handleClick}>
-      {show ? "Show Less" : "Show More"}
+      <span>{text}</span>
+    
+      
+      <button style={btnstyle} onClick={handleClick}>
+      {show ? "show less" : "...show more"}
       </button>
     </div>
   );
