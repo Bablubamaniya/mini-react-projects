@@ -1,5 +1,6 @@
 import Card from "./components/Card";
 import DateCounter from "./components/DateCounter";
+import ImageSlider from "./components/ImageSlider";
 import TextExpander from "./components/TextExpander";
 import "./index.css";
 
@@ -17,6 +18,7 @@ function App() {
     return (
         <div style={appStyle}>
             <Card />
+            <ImageSlider/>
             <TextExpander/>
             <DateCounter/>
         </div>

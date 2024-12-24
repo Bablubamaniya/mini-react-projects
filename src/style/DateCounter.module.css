@@ -2,10 +2,11 @@
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: rgba(128, 128, 128, 0.126);
-    border: 2px solid grey;
+    border: 2px solid rgb(224, 17, 17);
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    width: 30rem;
 }
 
 .buttonBox,
@@ -16,12 +17,12 @@
     justify-content: center;
 }
 
-p {
+.p {
     text-align: center;
 }
 
-button,
-input {
+.button,
+.input {
     padding: 0.1rem 0.4rem;
     cursor: pointer;
 }

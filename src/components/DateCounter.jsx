@@ -1,6 +1,6 @@
 // import React from 'react'
 import { useState } from "react";
-import "../style/dateCounter.css";
+import style from"../style/DateCounter.module.css";
 
 const today=new Date();
 
@@ -18,6 +18,13 @@ function addDays(date, days) {
     newDate.setDate(date.getDate() + days);
     return newDate;
 
+}
+function getPrefix(dayCount){
+  let prefix="";
+  if(dayCount==="0" || dayCount ==="-") prefix ="today is:";
+  else if(+dayCount>0) prefix =`${dayCount} days after:`;
+  else if(+dayCount<0) prefix = `${dayCount * -1} days before:`;
+  return prefix;
 }
 
 function isNumber(str) {
@@ -52,11 +59,13 @@ function DateCounter() {
 
   //dirive state
   const currentDate =addDays(today,Number(dayCount==="-"?0:dayCount));
+  const prefix=getPrefix(dayCount);
+
   
 
   return (
-    <div className="container">
-      <div className="rangeBox">
+    <div className={style.container}>
+      <div className={style.rangeBox}>
         <input
           type="range"
           min="1"
@@ -66,13 +75,13 @@ function DateCounter() {
         />
         <span>{step}</span>
       </div>
-      <div className="buttonBox">
-        <button onClick={minusDayCount}>-</button>
-        <input type="text" value={dayCount} onChange={handleDayCountChange} />
-        <button onClick={plusDayCount}>+</button>
+      <div className={style.buttonBox}>
+        <button className={style.button} onClick={minusDayCount}>-</button>
+        <input className={style.input} type="text" value={dayCount} onChange={handleDayCountChange} />
+        <button className={style.button} onClick={plusDayCount}>+</button>
       </div>
-      <p>{formateDate(currentDate)}</p>
-      <button onClick={handleReset}>Reset</button>
+      <p className={style.p}>{prefix}{formateDate(currentDate)}</p>
+      <button className={style.button} onClick={handleReset}>Reset</button>
     </div>
   );
 }
