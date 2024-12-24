@@ -1,6 +1,7 @@
 import Card from "./components/Card";
 import DateCounter from "./components/DateCounter";
 import ImageSlider from "./components/ImageSlider";
+import StarRatting from "./components/StarRatting";
 import TextExpander from "./components/TextExpander";
 import "./index.css";
 
@@ -21,6 +22,7 @@ function App() {
             <ImageSlider/>
             <TextExpander/>
             <DateCounter/>
+            <StarRatting/>
         </div>
     );
 }
