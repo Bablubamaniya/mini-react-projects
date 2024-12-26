@@ -1,16 +1,16 @@
 import { useState } from "react";
 import styles from "../style/StarRatting.module.css";
 
-const totalRating = 10;
-const color = "#e03131";
+// const totalRating = 10;
+// const color = "#e03131";
 const sStyle = {
   marginLeft: "1rem",
 };
 
-function StarRating() {
+function StarRating(props) {
  
-
-  const [tempRating, setTempRating] = useState(0);
+const {color,defaultRating,size:totalRating} =props;
+  const [tempRating, setTempRating] = useState(defaultRating);
   const [rating, setRating] = useState(0);
   const hovering =tempRating !==0;
 
